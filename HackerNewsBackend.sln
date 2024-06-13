@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNewsBackend.API", "HackerNewsBackend\HackerNewsBackend.API.csproj", "{A8A648B6-52DC-46D2-949B-10FD0CA95B16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNewsBackend.Domain", "HackerNewsBackend.Domain\HackerNewsBackend.Domain.csproj", "{4A680D3D-0C5E-4A78-98AD-62A8CB4A8000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNewsBackend.Services", "HackerNewsBackend.Services\HackerNewsBackend.Services.csproj", "{71F0B127-B6E2-4E75-AB64-87A47A698B85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{76F1CB8E-C037-4480-9345-EE6E13D2246B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNewsBackend.Services.Tests", "HackerNewsBackend.Services.Tests\HackerNewsBackend.Services.Tests.csproj", "{8F1BF303-C411-4EBC-80B5-E7D10AAFB297}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8A648B6-52DC-46D2-949B-10FD0CA95B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A648B6-52DC-46D2-949B-10FD0CA95B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A648B6-52DC-46D2-949B-10FD0CA95B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A648B6-52DC-46D2-949B-10FD0CA95B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A680D3D-0C5E-4A78-98AD-62A8CB4A8000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A680D3D-0C5E-4A78-98AD-62A8CB4A8000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A680D3D-0C5E-4A78-98AD-62A8CB4A8000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A680D3D-0C5E-4A78-98AD-62A8CB4A8000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F0B127-B6E2-4E75-AB64-87A47A698B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F0B127-B6E2-4E75-AB64-87A47A698B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F0B127-B6E2-4E75-AB64-87A47A698B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F0B127-B6E2-4E75-AB64-87A47A698B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1BF303-C411-4EBC-80B5-E7D10AAFB297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1BF303-C411-4EBC-80B5-E7D10AAFB297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1BF303-C411-4EBC-80B5-E7D10AAFB297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1BF303-C411-4EBC-80B5-E7D10AAFB297}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F1BF303-C411-4EBC-80B5-E7D10AAFB297} = {76F1CB8E-C037-4480-9345-EE6E13D2246B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4C3E5C3-11A2-435C-A319-643CEEB53DD1}
+	EndGlobalSection
+EndGlobal
