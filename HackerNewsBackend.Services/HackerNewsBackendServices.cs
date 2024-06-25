@@ -1,4 +1,7 @@
-﻿namespace HackerNewsBackend.Services
+﻿using System.IO.Pipes;
+using System.Runtime.CompilerServices;
+
+namespace HackerNewsBackend.Services
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +13,7 @@
     using HackerNewsBackend.Domain.Models;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Caching.Memory;
+    using System.Runtime.Intrinsics.Arm;
 
     public class HackerNewsBackendServices : IHackerNewsBackendServices
     {
@@ -21,9 +25,6 @@
             .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
             .SetPriority(CacheItemPriority.Normal)
             .SetSize(1024);
-        public const string baseUrl = "https://hacker-news.firebaseio.com/v0";
-        public const string storiesPath = "topstories.json?print=pretty";
-        public const string itemPath = "item";
 
         public HackerNewsBackendServices(IHttpClientFactory httpClientFactory, IConfiguration configuration, IMemoryCache cache)
         {
@@ -34,9 +35,10 @@
 
         private async Task<List<int>> GetListOfItem(int page, int pageSize)
         {
-            const string url = $"{baseUrl}/{storiesPath}";
+            var urlBase = this._configuration["HackerNewsApi:baseUrl"];
+            var urlStories = this._configuration["HackerNewsApi:storiesPath"];
             var httpClient = this._httpClientFactory.CreateClient();
-            var response = await httpClient.GetAsync(url);
+            var response = await httpClient.GetAsync($"{urlBase}/{urlStories}.json");
             if (response.IsSuccessStatusCode)
             {
                 var listItems = await response.Content.ReadAsStringAsync();
@@ -53,6 +55,8 @@
             var listStories = new List<TopStories?>();
             var listItemIds = await GetListOfItem(page, pageSize);
             var httpClient = this._httpClientFactory.CreateClient();
+            var urlBase = this._configuration["HackerNewsApi:baseUrl"];
+            var itemPath = this._configuration["HackerNewsApi:itemPath"];
             if (_cache.TryGetValue("listItemIds", out listStories))
             {
                 List<int> cacheIdList = listStories.Select(selector: x => x.Id).ToList();
@@ -65,7 +69,7 @@
             var listTopStories = new List<TopStories?>();
             foreach (var id in listItemIds)
             {
-                var url = $"{baseUrl}/{itemPath}/{id}.json?print=pretty";
+                var url = $"{urlBase}/{itemPath}/{id}.json";
                 var response = await httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
@@ -81,10 +85,12 @@
 
         public async Task<Item> GetItem(int id)
         {
+            var urlBase = this._configuration["HackerNewsApi:baseUrl"];
+            var itemPath = this._configuration["HackerNewsApi:itemPath"];
             if (!_cache.TryGetValue("id", out Item item))
             {
                 var httpClient = this._httpClientFactory.CreateClient();
-                var url = $"{baseUrl}/{itemPath}/{id}.json?print=pretty";
+                var url = $"{urlBase}/{itemPath}/{id}.json";
                 var response = await httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
